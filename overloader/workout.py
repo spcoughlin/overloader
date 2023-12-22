@@ -1,5 +1,6 @@
 from exercise import Exercise
 import json
+from json import JSONDecodeError
 
 class Workout:
 
@@ -9,6 +10,13 @@ class Workout:
     def add_exercise(self, exercise: Exercise):
         self.exercises[str(exercise.name)] = exercise.total
 
-    def write_to_json(self):
-        with open("log.json", "a") as f:
-            json.dump(self.exercises, f)
+    def write_to_json(self, jsonfile: str):
+        with open(jsonfile, 'r') as file:
+            try:
+                data = json.load(file)
+            except JSONDecodeError:
+                data = []
+            data.append(self.exercises)
+
+        with open(jsonfile, "w") as f:
+            json.dump(data, f)
