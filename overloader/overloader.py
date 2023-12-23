@@ -128,5 +128,6 @@ def view_suggestion():
         print("I'm gonna assume you meant yes.")
         view_suggestion()
 
+
 if __name__ == "__main__":
     main()
