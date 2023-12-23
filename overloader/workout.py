@@ -9,6 +9,7 @@ class Workout:
 
     def add_exercise(self, exercise: Exercise):
         self.exercises[str(exercise.name)] = exercise.total
+        exercise.total = 0
 
     def write_to_json(self, jsonfile: str):
         with open(jsonfile, 'r') as file:
